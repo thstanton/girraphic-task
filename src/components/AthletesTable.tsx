@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Athlete } from "../../@types/results";
-import convertCountryCode from "../lib/isoMapping";
 import AthleteFlag from "./AthleteFlag";
 import AthleteBib from "./AthleteBib";
 import AthleteRank from "./AthleteRank";
@@ -116,11 +115,7 @@ export function AthletesRow({ athlete }: AthletesRowProps) {
         <AthleteBib bibnumber={athlete.bibnumber} />
       </td>
       <td>
-        {convertCountryCode(athlete.flag) ? (
-          <AthleteFlag flag={athlete.flag} countryname={athlete.countryname} />
-        ) : (
-          athlete.flag
-        )}
+        <AthleteFlag flag={athlete.flag} countryname={athlete.countryname} />
       </td>
       <td>{athlete.countryname}</td>
     </tr>
