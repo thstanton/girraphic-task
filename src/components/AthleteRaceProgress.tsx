@@ -12,7 +12,7 @@ export default function AthleteRaceProgress({
         ` ${
           raceprogress === "completed"
             ? "bg-green-500"
-            : raceprogress === "running"
+            : raceprogress === "in progress"
               ? "bg-yellow-500"
               : "bg-red-500"
         }`
