@@ -106,7 +106,7 @@ export function AthletesRow({ athlete }: AthletesRowProps) {
       <td>{athlete.firstname}</td>
       <td>{athlete.surname}</td>
       <td>{athlete.athleteid}</td>
-      <td>{athlete.finishtime}</td>
+      <td>{athlete.raceprogress === "completed" && athlete.finishtime}</td>
       <td>
         <AthleteRaceProgress raceprogress={athlete.raceprogress} />
       </td>

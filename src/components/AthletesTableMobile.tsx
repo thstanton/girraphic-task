@@ -96,7 +96,7 @@ export function AthleteCard({ athlete }: AthleteCardProps) {
       </div>
       <div className="flex flex-col items-end">
         <AthleteRank rank={athlete.rank} />
-        <h1>{athlete.finishtime}</h1>
+        <h1>{athlete.raceprogress === "completed" && athlete.finishtime}</h1>
       </div>
     </div>
   );
