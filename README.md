@@ -48,4 +48,27 @@ I designed the header sections to be mobile-friendly using flex, however this di
 
 Finally, I installed Vitest and supporting libraries such as JSDom, @testing-library/react and @testing-library/jest-dom, to build some unit tests for the functionality. Creating the test for the CSV download was challenging, as I needed to learn about mocking - which was a concept that I was aware of but had not used myself.
 
+```ts
+...
+// Check that Blob constructor was called
+expect(mockedBlob).toHaveBeenCalled();
+expect(mockedBlob).toHaveBeenCalledWith([expect.any(String)], {
+  type: "text/csv;charset=utf-8,",
+});
+
+// Check Blob content is correctly formatted as CSV and content is correct
+const csvContent = mockedBlob.mock.calls[0][0][0];
+const expectedCsvContent =
+  "Rank,Full Name,Finish Time,Country Code\n3,John Doe,2:23:45,USA\n2,Jane Doe,1:23:45,GBR\n1,Mary Shelley,1:19:58,DEU\n";
+expect(csvContent).toEqual(expectedCsvContent);
+
+// Check that URL.createObjectURL was called
+expect(mockedCreateObjectURL).toHaveBeenCalled();
+
+// Check that link was created and clicked
+expect(createElementMock).toHaveBeenCalledWith("a");
+expect(linkClickMock).toHaveBeenCalled();
+...
+```
+
 The resulting function mocks browser objects that Node.js does not have access to in order to test that the Blob is created correctly with the correct content and that the link is created and 'clicked'. I suspect there may be ways to improve this!
