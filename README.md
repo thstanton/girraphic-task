@@ -72,3 +72,9 @@ expect(linkClickMock).toHaveBeenCalled();
 ```
 
 The resulting function mocks browser objects that Node.js does not have access to in order to test that the Blob is created correctly with the correct content and that the link is created and 'clicked'. I suspect there may be ways to improve this!
+
+## Contact Info
+
+Created by Tim Stanton
+[LinkedIn](https://www.linkedin.com/in/thstanton/)
+[Portfolio](https://www.tim-stanton.dev/)
