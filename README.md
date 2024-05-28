@@ -44,6 +44,32 @@ I tried to use a colour scheme which is similar to the Girraphic website, as wel
 
 I implemented this functionality by creating a function which formats the data in CSV format, storing the CSV string in a Blob object, creating an object URL, creating a link to the object URL and programmatically 'clicking' it to initiate the download.
 
+```ts
+export function createCSV(data: Athlete[]) {
+  const csvData = [["Rank", "Full Name", "Finish Time", "Country Code"]];
+  data.forEach((athlete) => {
+    csvData.push([
+      athlete.rank.toString(),
+      `${athlete.firstname} ${athlete.surname}`,
+      athlete.finishtime,
+      athlete.flag,
+    ]);
+  });
+
+  let csv = "";
+  csvData.forEach((row) => {
+    csv += row.join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8," });
+  const objUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", objUrl);
+  link.setAttribute("download", "race_results.csv");
+  link.click();
+}
+```
+
 ### Mobile Styling
 
 I designed the header sections to be mobile-friendly using flex, however this did not work for the table, so I decided to create a separate card format for displaying the data on mobile. As many of the elements from the table could be reused (such as the flags, bib numbers and ranks), I extrapolated them out into their own components and reused them.
